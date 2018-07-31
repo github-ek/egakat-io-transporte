@@ -34,6 +34,11 @@ public class RemesaProgramadaTansformationServiceimpl extends TransformationServ
 
 	@Autowired
 	private LookUpService lookUpService;
+	
+	@Override
+	public void cacheEvict() {
+		lookUpService.cacheEvict();
+	}
 
 	@Override
 	protected void translateField(RemesaProgramada registro, CampoDto campo, String value) {

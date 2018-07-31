@@ -31,6 +31,11 @@ public class ProgramacionRutaManualTansformationServiceimpl extends Transformati
 	private LookUpService lookUpService;
 
 	@Override
+	public void cacheEvict() {
+		lookUpService.cacheEvict();
+	}
+
+	@Override
 	protected void translateField(ProgramacionRutaManual registro, CampoDto campo, String value) {
 		switch (campo.getCodigo()) {
 		case CLIENTE_CODIGO:
