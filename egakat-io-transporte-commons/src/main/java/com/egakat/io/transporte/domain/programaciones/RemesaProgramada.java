@@ -72,23 +72,6 @@ public class RemesaProgramada extends Registro {
 		return String.format("[%s][%s]", getClienteIdentificacion(), getNumeroSolicitud());
 	}
 
-	@Builder
-	public RemesaProgramada(Long id, int version, LocalDateTime FechaCreacion, String createdBy,
-			LocalDateTime FechaModificacion, String modifiedBy, Long idArchivo, EstadoRegistroType estado,
-			int numeroLinea, @NotEmpty String placaProgramada, @NotNull LocalDate fechaProgramada,
-			@NotEmpty String clienteIdentificacion, @NotNull String numeroSolicitud, boolean servicioDedicado,
-			@NotNull String paqueteadoraCodigo, Long idCliente, Long idSolicitud) {
-		super(id, version, FechaCreacion, createdBy, FechaModificacion, modifiedBy, idArchivo, estado, numeroLinea);
-		this.placaProgramada = placaProgramada;
-		this.fechaProgramada = fechaProgramada;
-		this.clienteIdentificacion = clienteIdentificacion;
-		this.numeroSolicitud = numeroSolicitud;
-		this.servicioDedicado = servicioDedicado;
-		this.paqueteadoraCodigo = paqueteadoraCodigo;
-		this.idCliente = idCliente;
-		this.idSolicitud = idSolicitud;
-	}
-
 	@Override
 	public Object getObjectValueFromProperty(String property) {
 		switch (property) {
@@ -142,5 +125,22 @@ public class RemesaProgramada extends Registro {
 		default:
 			return null;
 		}
+	}
+
+	@Builder
+	public RemesaProgramada(Long id, int version, LocalDateTime fechaCreacion, String creadoPor,
+			LocalDateTime fechaModificacion, String modificadoPor, Long idArchivo, @NotNull EstadoRegistroType estado,
+			int numeroLinea, @NotEmpty String placaProgramada, @NotNull LocalDate fechaProgramada,
+			@NotEmpty String clienteIdentificacion, @NotNull String numeroSolicitud, boolean servicioDedicado,
+			@NotNull String paqueteadoraCodigo, Long idCliente, Long idSolicitud) {
+		super(id, version, fechaCreacion, creadoPor, fechaModificacion, modificadoPor, idArchivo, estado, numeroLinea);
+		this.placaProgramada = placaProgramada;
+		this.fechaProgramada = fechaProgramada;
+		this.clienteIdentificacion = clienteIdentificacion;
+		this.numeroSolicitud = numeroSolicitud;
+		this.servicioDedicado = servicioDedicado;
+		this.paqueteadoraCodigo = paqueteadoraCodigo;
+		this.idCliente = idCliente;
+		this.idSolicitud = idSolicitud;
 	}
 }

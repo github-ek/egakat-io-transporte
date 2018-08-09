@@ -53,18 +53,6 @@ public class ConsultaSolicitudes extends Registro {
 		return String.format("[%s][%s]", getClienteCodigo(), getNumeroSolicitud());
 	}
 
-	@Builder
-	public ConsultaSolicitudes(Long id, int version, LocalDateTime FechaCreacion, String createdBy,
-			LocalDateTime FechaModificacion, String modifiedBy, Long idArchivo, EstadoRegistroType estado,
-			int numeroLinea, @Size(max = 20) @NotNull String clienteCodigo,
-			@Size(max = 20) @NotNull String numeroSolicitud, Long idCliente, Long idSolicitud) {
-		super(id, version, FechaCreacion, createdBy, FechaModificacion, modifiedBy, idArchivo, estado, numeroLinea);
-		this.clienteCodigo = clienteCodigo;
-		this.numeroSolicitud = numeroSolicitud;
-		this.idCliente = idCliente;
-		this.idSolicitud = idSolicitud;
-	}
-
 	@Override
 	public Object getObjectValueFromProperty(String property) {
 		switch (property) {
@@ -109,5 +97,17 @@ public class ConsultaSolicitudes extends Registro {
 		default:
 			return null;
 		}
+	}
+
+	@Builder
+	public ConsultaSolicitudes(Long id, int version, LocalDateTime fechaCreacion, String creadoPor,
+			LocalDateTime fechaModificacion, String modificadoPor, Long idArchivo, @NotNull EstadoRegistroType estado,
+			int numeroLinea, @Size(max = 20) @NotNull String clienteCodigo,
+			@Size(max = 20) @NotNull String numeroSolicitud, Long idCliente, Long idSolicitud) {
+		super(id, version, fechaCreacion, creadoPor, fechaModificacion, modificadoPor, idArchivo, estado, numeroLinea);
+		this.clienteCodigo = clienteCodigo;
+		this.numeroSolicitud = numeroSolicitud;
+		this.idCliente = idCliente;
+		this.idSolicitud = idSolicitud;
 	}
 }
