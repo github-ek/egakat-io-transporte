@@ -28,8 +28,6 @@ import lombok.ToString;
 @NoArgsConstructor
 public class MovilRutaControl extends Registro {
 
-	private static final long serialVersionUID = 1L;
-
 	public static final String MOVIL = "MOVIL";
 	public static final String PLACA = "PLACA";
 

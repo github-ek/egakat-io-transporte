@@ -29,8 +29,6 @@ import lombok.ToString;
 @NoArgsConstructor
 public class PlanillaRutaControl extends Registro {
 
-	private static final long serialVersionUID = 1L;
-
 	public static final String PLACA_PROGRAMADA = "PLACA_PROGRAMADA";
 	public static final String FECHA_PROGRAMADA = "FECHA_PROGRAMADA";
 

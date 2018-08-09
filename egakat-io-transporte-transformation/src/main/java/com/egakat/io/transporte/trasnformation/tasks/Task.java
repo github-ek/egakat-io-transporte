@@ -6,16 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import com.egakat.io.transporte.trasnformation.service.api.cierres.PlanillaRutaControlTransformationService;
 import com.egakat.io.transporte.trasnformation.service.api.programaciones.ProgramacionRutaManualTransformationService;
 import com.egakat.io.transporte.trasnformation.service.api.programaciones.ProgramacionRutaTourSolverTransformationService;
-import com.egakat.io.transporte.trasnformation.service.api.programaciones.RemesaProgramadaTransformationService;
 
 import lombok.val;
 
 @Component
 public class Task {
 	@Autowired
-	private RemesaProgramadaTransformationService remesaProgramadaTransformationService;
+	private PlanillaRutaControlTransformationService planillaRutaControlTransformationService;
 
 	@Autowired
 	private ProgramacionRutaManualTransformationService programacionRutaManualTransformationService;
@@ -27,7 +27,7 @@ public class Task {
 	public void run() {
 		// @formatter:off
 		val services = Arrays.asList(
-				remesaProgramadaTransformationService, 
+				planillaRutaControlTransformationService, 
 				programacionRutaTourSolverTransformationService, 
 				programacionRutaManualTransformationService);
 		// @formatter:on

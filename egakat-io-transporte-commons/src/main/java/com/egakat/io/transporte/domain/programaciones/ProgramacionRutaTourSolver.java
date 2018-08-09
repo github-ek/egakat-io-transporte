@@ -30,8 +30,6 @@ import lombok.ToString;
 @NoArgsConstructor
 public class ProgramacionRutaTourSolver extends Registro {
 
-	private static final long serialVersionUID = 1L;
-
 	public static final String PLACA = "PLACA";
 	public static final String SECUENCIA = "SECUENCIA";
 	public static final String CLIENTE_CODIGO = "CLIENTE_CODIGO";

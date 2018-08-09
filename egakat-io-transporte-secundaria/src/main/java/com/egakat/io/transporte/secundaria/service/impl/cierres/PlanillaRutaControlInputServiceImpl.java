@@ -2,6 +2,7 @@ package com.egakat.io.transporte.secundaria.service.impl.cierres;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.egakat.integration.core.files.components.decorators.Decorator;
 import com.egakat.integration.core.files.components.decorators.IncluirEncabezadoDecorator;
@@ -17,6 +18,7 @@ import com.egakat.io.transporte.secundaria.service.api.cierres.PlanillaRutaContr
 import lombok.val;
 
 @Service
+@Transactional(readOnly = true)
 public class PlanillaRutaControlInputServiceImpl extends ArchivoExcelInputServiceImpl<PlanillaRutaControl>
 		implements PlanillaRutaControlInputService {
 

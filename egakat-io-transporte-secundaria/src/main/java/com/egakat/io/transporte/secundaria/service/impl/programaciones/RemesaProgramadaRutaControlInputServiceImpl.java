@@ -2,6 +2,7 @@ package com.egakat.io.transporte.secundaria.service.impl.programaciones;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.egakat.integration.core.files.components.decorators.Decorator;
 import com.egakat.integration.core.files.components.decorators.IncluirEncabezadoDecorator;
@@ -17,6 +18,7 @@ import com.egakat.io.transporte.secundaria.service.api.programaciones.RemesaProg
 import lombok.val;
 
 @Service
+@Transactional(readOnly = true)
 public class RemesaProgramadaRutaControlInputServiceImpl extends ArchivoExcelInputServiceImpl<RemesaProgramada>
 		implements RemesaProgramadaRutaControlInputService {
 
