@@ -40,6 +40,9 @@ public class Task {
 				planillaRutaControlInputService/*,
 				movilesRutaControlService,
 				consultaSolicitudesService,
+				planillaRutaControlInputService,
+				/*movilesRutaControlService,*/
+				consultaSolicitudesService/*,
 				programacionRutaTourSolverService,
 				programacionRutaManualService,
 				remesaProgramadaRutaControlService*/
