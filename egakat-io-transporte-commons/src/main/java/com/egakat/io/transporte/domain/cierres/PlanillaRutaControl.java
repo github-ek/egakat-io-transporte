@@ -90,26 +90,6 @@ public class PlanillaRutaControl extends Registro {
 
 	@Builder
 	public PlanillaRutaControl(Long id, int version, LocalDateTime FechaCreacion, String createdBy,
-			LocalDateTime FechaModificacion, String modifiedBy, Long idArchivo, EstadoRegistroType estado,
-			int numeroLinea, @NotEmpty String placaProgramada, @NotNull LocalDate fechaProgramada,
-			@NotEmpty String clienteIdentificacion, @NotNull String numeroSolicitud,
-			@NotEmpty String estadoCodigoAlterno, @NotNull String causalNovedadCodigoAlterno,
-			LocalDateTime fechaHoraInicio, LocalDateTime fechaHoraFin, @NotNull String observaciones, Long idCliente,
-			Long idSolicitud) {
-		super(id, version, FechaCreacion, createdBy, FechaModificacion, modifiedBy, idArchivo, estado, numeroLinea);
-		this.placaProgramada = placaProgramada;
-		this.fechaProgramada = fechaProgramada;
-		this.clienteIdentificacion = clienteIdentificacion;
-		this.numeroSolicitud = numeroSolicitud;
-		this.estadoCodigoAlterno = estadoCodigoAlterno;
-		this.causalNovedadCodigoAlterno = causalNovedadCodigoAlterno;
-		this.fechaHoraInicio = fechaHoraInicio;
-		this.fechaHoraFin = fechaHoraFin;
-		this.observaciones = observaciones;
-		this.idCliente = idCliente;
-		this.idSolicitud = idSolicitud;
-	}
-
 	@Override
 	public Object getObjectValueFromProperty(String property) {
 		switch (property) {
@@ -170,5 +150,27 @@ public class PlanillaRutaControl extends Registro {
 		default:
 			return null;
 		}
+	}
+
+	@Builder
+	public PlanillaRutaControl(Long id, int version, LocalDateTime fechaCreacion, String creadoPor,
+			LocalDateTime fechaModificacion, String modificadoPor, Long idArchivo, @NotNull EstadoRegistroType estado,
+			int numeroLinea, @NotEmpty String placaProgramada, @NotNull LocalDate fechaProgramada,
+			@NotEmpty String clienteIdentificacion, @NotNull String numeroSolicitud,
+			@NotEmpty String estadoCodigoAlterno, @NotNull String causalNovedadCodigoAlterno,
+			LocalDateTime fechaHoraInicio, LocalDateTime fechaHoraFin, @NotNull String observaciones, Long idCliente,
+			Long idSolicitud) {
+		super(id, version, fechaCreacion, creadoPor, fechaModificacion, modificadoPor, idArchivo, estado, numeroLinea);
+		this.placaProgramada = placaProgramada;
+		this.fechaProgramada = fechaProgramada;
+		this.clienteIdentificacion = clienteIdentificacion;
+		this.numeroSolicitud = numeroSolicitud;
+		this.estadoCodigoAlterno = estadoCodigoAlterno;
+		this.causalNovedadCodigoAlterno = causalNovedadCodigoAlterno;
+		this.fechaHoraInicio = fechaHoraInicio;
+		this.fechaHoraFin = fechaHoraFin;
+		this.observaciones = observaciones;
+		this.idCliente = idCliente;
+		this.idSolicitud = idSolicitud;
 	}
 }

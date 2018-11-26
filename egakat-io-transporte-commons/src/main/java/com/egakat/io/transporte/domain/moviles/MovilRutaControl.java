@@ -28,8 +28,6 @@ import lombok.ToString;
 @NoArgsConstructor
 public class MovilRutaControl extends Registro {
 
-	private static final long serialVersionUID = 1L;
-
 	public static final String MOVIL = "MOVIL";
 	public static final String PLACA = "PLACA";
 
@@ -46,15 +44,6 @@ public class MovilRutaControl extends Registro {
 	@Override
 	public String getIdCorrelacion() {
 		return getMovil();
-	}
-
-	@Builder
-	public MovilRutaControl(Long id, int version, LocalDateTime FechaCreacion, String createdBy,
-			LocalDateTime FechaModificacion, String modifiedBy, Long idArchivo, EstadoRegistroType estado,
-			int numeroLinea, @Size(max = 20) @NotNull String movil, @Size(max = 20) @NotNull String placa) {
-		super(id, version, FechaCreacion, createdBy, FechaModificacion, modifiedBy, idArchivo, estado, numeroLinea);
-		this.movil = movil;
-		this.placa = placa;
 	}
 
 	@Override
@@ -82,5 +71,14 @@ public class MovilRutaControl extends Registro {
 	@Override
 	protected Object getObjectValueFromHomologousProperty(String property) {
 		return null;
+	}
+
+	@Builder
+	public MovilRutaControl(Long id, int version, LocalDateTime fechaCreacion, String creadoPor,
+			LocalDateTime fechaModificacion, String modificadoPor, Long idArchivo, @NotNull EstadoRegistroType estado,
+			int numeroLinea, @Size(max = 20) @NotNull String movil, @Size(max = 20) @NotNull String placa) {
+		super(id, version, fechaCreacion, creadoPor, fechaModificacion, modificadoPor, idArchivo, estado, numeroLinea);
+		this.movil = movil;
+		this.placa = placa;
 	}
 }

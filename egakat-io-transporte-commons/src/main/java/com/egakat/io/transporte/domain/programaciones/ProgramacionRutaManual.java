@@ -29,8 +29,6 @@ import lombok.ToString;
 @NoArgsConstructor
 public class ProgramacionRutaManual extends Registro {
 
-	private static final long serialVersionUID = 1L;
-
 	public static final String PLACA = "PLACA";
 	public static final String SECUENCIA = "SECUENCIA";
 	public static final String CLIENTE_CODIGO = "CLIENTE_CODIGO";
@@ -68,22 +66,6 @@ public class ProgramacionRutaManual extends Registro {
 	@Override
 	public String getIdCorrelacion() {
 		return String.format("[%s][%s]", getClienteCodigo(), getNumeroSolicitud());
-	}
-
-	@Builder
-	public ProgramacionRutaManual(Long id, int version, LocalDateTime FechaCreacion, String createdBy,
-			LocalDateTime FechaModificacion, String modifiedBy, Long idArchivo, EstadoRegistroType estado,
-			int numeroLinea, @Size(max = 20) @NotNull String placa, int secuencia,
-			@Size(max = 20) @NotNull String clienteCodigo, @Size(max = 20) @NotNull String numeroSolicitud,
-			@NotNull LocalDate fechaEstimada, Long idCliente, Long idSolicitud) {
-		super(id, version, FechaCreacion, createdBy, FechaModificacion, modifiedBy, idArchivo, estado, numeroLinea);
-		this.placa = placa;
-		this.secuencia = secuencia;
-		this.clienteCodigo = clienteCodigo;
-		this.numeroSolicitud = numeroSolicitud;
-		this.fechaEstimada = fechaEstimada;
-		this.idCliente = idCliente;
-		this.idSolicitud = idSolicitud;
 	}
 	
 	@Override
@@ -137,5 +119,21 @@ public class ProgramacionRutaManual extends Registro {
 		default:
 			return null;
 		}
+	}
+
+	@Builder
+	public ProgramacionRutaManual(Long id, int version, LocalDateTime fechaCreacion, String creadoPor,
+			LocalDateTime fechaModificacion, String modificadoPor, Long idArchivo, @NotNull EstadoRegistroType estado,
+			int numeroLinea, @Size(max = 20) @NotNull String placa, int secuencia,
+			@Size(max = 20) @NotNull String clienteCodigo, @Size(max = 20) @NotNull String numeroSolicitud,
+			@NotNull LocalDate fechaEstimada, Long idCliente, Long idSolicitud) {
+		super(id, version, fechaCreacion, creadoPor, fechaModificacion, modificadoPor, idArchivo, estado, numeroLinea);
+		this.placa = placa;
+		this.secuencia = secuencia;
+		this.clienteCodigo = clienteCodigo;
+		this.numeroSolicitud = numeroSolicitud;
+		this.fechaEstimada = fechaEstimada;
+		this.idCliente = idCliente;
+		this.idSolicitud = idSolicitud;
 	}
 }

@@ -6,6 +6,7 @@ import javax.sql.DataSource;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
+import org.springframework.context.annotation.AdviceMode;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -20,7 +21,7 @@ import com.zaxxer.hikari.HikariDataSource;
 import lombok.val;
 
 @Configuration
-@EnableTransactionManagement
+@EnableTransactionManagement(mode = AdviceMode.ASPECTJ)
 @EnableJpaRepositories(basePackages = JpaConfiguration.PACKAGES_TO_SCAN_FOR_REPOSITORIES)
 public class JpaConfiguration {
 
@@ -28,7 +29,6 @@ public class JpaConfiguration {
 
 	static final String[] PACKAGES_TO_SCAN_FOR_ENTITIES = { "com.egakat.io.transporte.domain",
 			"com.egakat.core.data.jpa.converters" };
-
 
 	static final String DATASOURCE_PROPERTIES_PREFIX = "spring.datasource";
 

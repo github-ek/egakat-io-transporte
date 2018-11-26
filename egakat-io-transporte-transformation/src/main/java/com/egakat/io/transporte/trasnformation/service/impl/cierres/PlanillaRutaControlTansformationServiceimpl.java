@@ -1,9 +1,9 @@
-package com.egakat.io.transporte.trasnformation.service.impl.programaciones;
+package com.egakat.io.transporte.trasnformation.service.impl.cierres;
 
 import static com.egakat.integration.files.enums.EstadoRegistroType.DESCARTADO;
 import static com.egakat.integration.files.enums.EstadoRegistroType.ERROR_VALIDACION;
-import static com.egakat.io.transporte.domain.programaciones.RemesaProgramada.CLIENTE_IDENTIFICACION;
-import static com.egakat.io.transporte.domain.programaciones.RemesaProgramada.NUMERO_SOLICITUD;
+import static com.egakat.io.transporte.domain.cierres.PlanillaRutaControl.CLIENTE_IDENTIFICACION;
+import static com.egakat.io.transporte.domain.cierres.PlanillaRutaControl.NUMERO_SOLICITUD;
 
 import java.util.List;
 
@@ -14,29 +14,35 @@ import com.egakat.econnect.maestros.client.service.api.lookup.LookUpService;
 import com.egakat.integration.core.transformation.service.impl.TransformationServiceImpl;
 import com.egakat.integration.files.dto.ArchivoErrorDto;
 import com.egakat.integration.files.dto.CampoDto;
+import com.egakat.io.transporte.domain.cierres.PlanillaRutaControl;
 import com.egakat.io.transporte.domain.programaciones.RemesaProgramada;
-import com.egakat.io.transporte.repository.programaciones.RemesaProgramadaRepository;
-import com.egakat.io.transporte.trasnformation.service.api.programaciones.RemesaProgramadaTransformationService;
+import com.egakat.io.transporte.repository.cierres.PlanillaRutaControlRepository;
+import com.egakat.io.transporte.trasnformation.service.api.cierres.PlanillaRutaControlTransformationService;
 
 import lombok.val;
 
 @Service
-public class RemesaProgramadaTansformationServiceimpl extends TransformationServiceImpl<RemesaProgramada>
-		implements RemesaProgramadaTransformationService {
+public class PlanillaRutaControlTansformationServiceimpl extends TransformationServiceImpl<PlanillaRutaControl>
+		implements PlanillaRutaControlTransformationService {
 
 	@Autowired
-	private RemesaProgramadaRepository repository;
+	private PlanillaRutaControlRepository repository;
 
 	@Override
-	protected RemesaProgramadaRepository getRepository() {
+	protected PlanillaRutaControlRepository getRepository() {
 		return repository;
 	}
 
 	@Autowired
 	private LookUpService lookUpService;
+	
+	@Override
+	public void cacheEvict() {
+		lookUpService.cacheEvict();
+	}
 
 	@Override
-	protected void translateField(RemesaProgramada registro, CampoDto campo, String value) {
+	protected void translateField(PlanillaRutaControl registro, CampoDto campo, String value) {
 		switch (campo.getCodigo()) {
 		case RemesaProgramada.CLIENTE_IDENTIFICACION:
 			translateCliente(registro, value);
@@ -47,14 +53,14 @@ public class RemesaProgramadaTansformationServiceimpl extends TransformationServ
 		}
 	}
 
-	private void translateCliente(RemesaProgramada registro, String value) {
+	private void translateCliente(PlanillaRutaControl registro, String value) {
 		registro.setIdCliente(null);
 		val id = lookUpService.findClienteIdByNumeroIndentificacion(value);
 		registro.setIdCliente(id);
 	}
 
 	@Override
-	protected boolean beforeValidateRow(RemesaProgramada registro, List<ArchivoErrorDto> errores,
+	protected boolean beforeValidateRow(PlanillaRutaControl registro, List<ArchivoErrorDto> errores,
 			List<CampoDto> campos) {
 		boolean result = super.beforeValidateRow(registro, errores, campos);
 
@@ -73,7 +79,7 @@ public class RemesaProgramadaTansformationServiceimpl extends TransformationServ
 	}
 
 	@Override
-	protected boolean validateRow(RemesaProgramada registro, List<ArchivoErrorDto> errores, List<CampoDto> campos) {
+	protected boolean validateRow(PlanillaRutaControl registro, List<ArchivoErrorDto> errores, List<CampoDto> campos) {
 		boolean result = super.validateRow(registro, errores, campos);
 		boolean success = true;
 		val idArchivo = registro.getIdArchivo();
@@ -82,8 +88,8 @@ public class RemesaProgramadaTansformationServiceimpl extends TransformationServ
 
 		val identificacion = registro.getClienteIdentificacion();
 		val numeroSolicitud = registro.getNumeroSolicitud();
-		val placa = registro.getPlacaProgramada();
-		val paqueteadora = registro.getPaqueteadoraCodigo();
+//		val placa = registro.getPlacaProgramada();
+//		val paqueteadora = registro.getPaqueteadoraCodigo();
 
 		if ((identificacion.isEmpty() && !numeroSolicitud.isEmpty())
 				|| (!identificacion.isEmpty() && numeroSolicitud.isEmpty())) {
@@ -100,20 +106,20 @@ public class RemesaProgramadaTansformationServiceimpl extends TransformationServ
 			errores.add(ArchivoErrorDto.error(idArchivo, mensaje, numeroLinea, datos));
 			success = false;
 		}
-
-		if (placa.startsWith("PAQUETEO") && paqueteadora.isEmpty()) {
-			// String mensaje = "Cuando la placa corresponda a una operación de paqueteo, se
-			// debe suministrar un código de paqueteadora";
-			// errores.add(ArchivoErrorDto.error(idArchivo, mensaje, numeroLinea, datos));
-			// success = false;
-		}
-
-		if (placa.startsWith("TACTIC_")) {
-			//String mensaje = "No se permite el uso de placas genéricas. Si aún no dispone de la placa real, es preferible que excluya estas remesas y las programe cuando tenga el dato real";
-			//errores.add(ArchivoErrorDto.error(idArchivo, mensaje, numeroLinea, datos));
-			//success = false;
-		}
-
+//
+//		if (placa.startsWith("PAQUETEO") && paqueteadora.isEmpty()) {
+//			// String mensaje = "Cuando la placa corresponda a una operación de paqueteo, se
+//			// debe suministrar un código de paqueteadora";
+//			// errores.add(ArchivoErrorDto.error(idArchivo, mensaje, numeroLinea, datos));
+//			// success = false;
+//		}
+//
+//		if (placa.startsWith("TACTIC_")) {
+//			//String mensaje = "No se permite el uso de placas genéricas. Si aún no dispone de la placa real, es preferible que excluya estas remesas y las programe cuando tenga el dato real";
+//			//errores.add(ArchivoErrorDto.error(idArchivo, mensaje, numeroLinea, datos));
+//			//success = false;
+//		}
+//
 		if (!success) {
 			registro.setEstado(ERROR_VALIDACION);
 			result = false;

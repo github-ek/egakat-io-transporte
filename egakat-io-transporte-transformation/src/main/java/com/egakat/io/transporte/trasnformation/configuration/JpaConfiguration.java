@@ -3,45 +3,55 @@ package com.egakat.io.transporte.trasnformation.configuration;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
+import org.springframework.context.annotation.AdviceMode;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import com.egakat.io.transporte.trasnformation.Application;
+import com.zaxxer.hikari.HikariDataSource;
 
 import lombok.val;
 
 @Configuration
-@PropertySource("classpath:" + Application.SPRING_CONFIG_NAME_APPLICATION + ".properties")
-@EnableTransactionManagement
+@EnableTransactionManagement(mode = AdviceMode.ASPECTJ)
 @EnableJpaRepositories(basePackages = JpaConfiguration.PACKAGES_TO_SCAN_FOR_REPOSITORIES)
 public class JpaConfiguration {
 
-	static final String PACKAGES_TO_SCAN_FOR_REPOSITORIES = "com.egakat.etl.repository";
+	static final String PACKAGES_TO_SCAN_FOR_REPOSITORIES = "com.egakat.io.transporte.repository";
 
-	static final String[] PACKAGES_TO_SCAN_FOR_ENTITIES = { "com.egakat.etl.domain",
+	static final String[] PACKAGES_TO_SCAN_FOR_ENTITIES = { "com.egakat.io.transporte.domain",
 			"com.egakat.core.data.jpa.converters" };
 
-	protected String[] getPackagesToScanForEntities() {
-		return PACKAGES_TO_SCAN_FOR_ENTITIES;
-	}
+	static final String DATASOURCE_PROPERTIES_PREFIX = "spring.datasource";
 
+	@Primary
 	@Bean
-	public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
-		val result = new JpaTransactionManager(entityManagerFactory);
+	@ConfigurationProperties(prefix = DATASOURCE_PROPERTIES_PREFIX)
+	public DataSource dataSource() {
+		val result = DataSourceBuilder.create().type(HikariDataSource.class).build();
 		return result;
 	}
 
+	@Primary
 	@Bean
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory(EntityManagerFactoryBuilder builder,
 			DataSource dataSource) {
-		val result = builder.dataSource(dataSource).packages(getPackagesToScanForEntities()).build();
+		val result = builder.dataSource(dataSource).packages(PACKAGES_TO_SCAN_FOR_ENTITIES).build();
+		return result;
+	}
+
+	@Primary
+	@Bean
+	public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
+		val result = new JpaTransactionManager(entityManagerFactory);
 		return result;
 	}
 }

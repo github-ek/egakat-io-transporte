@@ -32,6 +32,11 @@ public class ProgramacionRutaTourSolverTansformationServiceimpl
 	private LookUpService lookUpService;
 
 	@Override
+	public void cacheEvict() {
+		lookUpService.cacheEvict();
+	}
+
+	@Override
 	protected void translateField(ProgramacionRutaTourSolver registro, CampoDto campo, String value) {
 		switch (campo.getCodigo()) {
 		case CLIENTE_CODIGO:

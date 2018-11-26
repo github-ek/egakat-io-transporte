@@ -30,8 +30,6 @@ import lombok.ToString;
 @NoArgsConstructor
 public class ProgramacionRutaTourSolver extends Registro {
 
-	private static final long serialVersionUID = 1L;
-
 	public static final String PLACA = "PLACA";
 	public static final String SECUENCIA = "SECUENCIA";
 	public static final String CLIENTE_CODIGO = "CLIENTE_CODIGO";
@@ -74,23 +72,6 @@ public class ProgramacionRutaTourSolver extends Registro {
 	@Override
 	public String getIdCorrelacion() {
 		return String.format("[%s][%d]", getClienteCodigo(), getIdentificadorOrden());
-	}
-
-	@Builder
-	public ProgramacionRutaTourSolver(Long id, int version, LocalDateTime FechaCreacion, String createdBy,
-			LocalDateTime FechaModificacion, String modifiedBy, Long idArchivo, EstadoRegistroType estado,
-			int numeroLinea, @Size(max = 20) @NotNull String placa, int secuencia,
-			@Size(max = 20) @NotNull String clienteCodigo, @Size(max = 8) @NotNull String identificadorOrden,
-			@NotNull LocalDate fechaEstimada, @NotNull LocalTime horaEstimada, Long idCliente, Long idSolicitud) {
-		super(id, version, FechaCreacion, createdBy, FechaModificacion, modifiedBy, idArchivo, estado, numeroLinea);
-		this.placa = placa;
-		this.secuencia = secuencia;
-		this.clienteCodigo = clienteCodigo;
-		this.identificadorOrden = identificadorOrden;
-		this.fechaEstimada = fechaEstimada;
-		this.horaEstimada = horaEstimada;
-		this.idCliente = idCliente;
-		this.idSolicitud = idSolicitud;
 	}
 
 	@Override
@@ -150,5 +131,22 @@ public class ProgramacionRutaTourSolver extends Registro {
 		default:
 			return null;
 		}
+	}
+
+	@Builder
+	public ProgramacionRutaTourSolver(Long id, int version, LocalDateTime fechaCreacion, String creadoPor,
+			LocalDateTime fechaModificacion, String modificadoPor, Long idArchivo, @NotNull EstadoRegistroType estado,
+			int numeroLinea, @Size(max = 20) @NotNull String placa, int secuencia,
+			@Size(max = 20) @NotNull String clienteCodigo, @Size(max = 8) @NotNull String identificadorOrden,
+			@NotNull LocalDate fechaEstimada, @NotNull LocalTime horaEstimada, Long idCliente, Long idSolicitud) {
+		super(id, version, fechaCreacion, creadoPor, fechaModificacion, modificadoPor, idArchivo, estado, numeroLinea);
+		this.placa = placa;
+		this.secuencia = secuencia;
+		this.clienteCodigo = clienteCodigo;
+		this.identificadorOrden = identificadorOrden;
+		this.fechaEstimada = fechaEstimada;
+		this.horaEstimada = horaEstimada;
+		this.idCliente = idCliente;
+		this.idSolicitud = idSolicitud;
 	}
 }

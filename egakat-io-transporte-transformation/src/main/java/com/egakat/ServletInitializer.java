@@ -1,4 +1,4 @@
-package com.egakat.io.transporte.trasnformation;
+package com.egakat;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
