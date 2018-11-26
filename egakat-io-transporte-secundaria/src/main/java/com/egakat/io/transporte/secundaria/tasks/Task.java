@@ -7,6 +7,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import com.egakat.io.transporte.secundaria.service.api.cierres.PlanillaRutaControlInputService;
+import com.egakat.io.transporte.secundaria.service.api.programaciones.ConsultaSolicitudesInputService;
 
 import lombok.val;
 import lombok.extern.slf4j.Slf4j;
@@ -21,8 +22,8 @@ public class Task {
 //	@Autowired
 //	private MovilesRutaControlInputService movilesRutaControlService;
 //
-//	@Autowired
-//	private ConsultaSolicitudesInputService consultaSolicitudesService;
+	@Autowired
+	private ConsultaSolicitudesInputService consultaSolicitudesService;
 //
 //	@Autowired
 //	private ProgramacionRutaTourSolverInputService programacionRutaTourSolverService;
@@ -37,9 +38,6 @@ public class Task {
 	public void run() {
 		// @formatter:off
 		val services = Arrays.asList(
-				planillaRutaControlInputService/*,
-				movilesRutaControlService,
-				consultaSolicitudesService,
 				planillaRutaControlInputService,
 				/*movilesRutaControlService,*/
 				consultaSolicitudesService/*,
