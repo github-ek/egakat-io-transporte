@@ -11,10 +11,8 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.DynamicUpdate;
 
-import com.egakat.integration.files.domain.Registro;
-import com.egakat.integration.files.enums.EstadoRegistroType;
+import com.egakat.integration.commons.archivos.domain.Registro;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -146,27 +144,5 @@ public class PlanillaRutaControl extends Registro {
 		default:
 			return null;
 		}
-	}
-
-	@Builder
-	public PlanillaRutaControl(Long id, int version, LocalDateTime fechaCreacion, String creadoPor,
-			LocalDateTime fechaModificacion, String modificadoPor, Long idArchivo, @NotNull EstadoRegistroType estado,
-			int numeroLinea, @NotEmpty String placaProgramada, @NotNull LocalDate fechaProgramada,
-			@NotEmpty String clienteIdentificacion, @NotNull String numeroSolicitud,
-			@NotEmpty String estadoCodigoAlterno, @NotNull String causalNovedadCodigoAlterno,
-			LocalDateTime fechaHoraInicio, LocalDateTime fechaHoraFin, @NotNull String observaciones, Long idCliente,
-			Long idSolicitud) {
-		super(id, version, fechaCreacion, creadoPor, fechaModificacion, modificadoPor, idArchivo, estado, numeroLinea);
-		this.placaProgramada = placaProgramada;
-		this.fechaProgramada = fechaProgramada;
-		this.clienteIdentificacion = clienteIdentificacion;
-		this.numeroSolicitud = numeroSolicitud;
-		this.estadoCodigoAlterno = estadoCodigoAlterno;
-		this.causalNovedadCodigoAlterno = causalNovedadCodigoAlterno;
-		this.fechaHoraInicio = fechaHoraInicio;
-		this.fechaHoraFin = fechaHoraFin;
-		this.observaciones = observaciones;
-		this.idCliente = idCliente;
-		this.idSolicitud = idSolicitud;
 	}
 }

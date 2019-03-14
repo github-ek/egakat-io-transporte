@@ -1,7 +1,6 @@
 package com.egakat.io.transporte.domain.programaciones;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,10 +10,8 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.DynamicUpdate;
 
-import com.egakat.integration.files.domain.Registro;
-import com.egakat.integration.files.enums.EstadoRegistroType;
+import com.egakat.integration.commons.archivos.domain.Registro;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -125,22 +122,5 @@ public class RemesaProgramada extends Registro {
 		default:
 			return null;
 		}
-	}
-
-	@Builder
-	public RemesaProgramada(Long id, int version, LocalDateTime fechaCreacion, String creadoPor,
-			LocalDateTime fechaModificacion, String modificadoPor, Long idArchivo, @NotNull EstadoRegistroType estado,
-			int numeroLinea, @NotEmpty String placaProgramada, @NotNull LocalDate fechaProgramada,
-			@NotEmpty String clienteIdentificacion, @NotNull String numeroSolicitud, boolean servicioDedicado,
-			@NotNull String paqueteadoraCodigo, Long idCliente, Long idSolicitud) {
-		super(id, version, fechaCreacion, creadoPor, fechaModificacion, modificadoPor, idArchivo, estado, numeroLinea);
-		this.placaProgramada = placaProgramada;
-		this.fechaProgramada = fechaProgramada;
-		this.clienteIdentificacion = clienteIdentificacion;
-		this.numeroSolicitud = numeroSolicitud;
-		this.servicioDedicado = servicioDedicado;
-		this.paqueteadoraCodigo = paqueteadoraCodigo;
-		this.idCliente = idCliente;
-		this.idSolicitud = idSolicitud;
 	}
 }

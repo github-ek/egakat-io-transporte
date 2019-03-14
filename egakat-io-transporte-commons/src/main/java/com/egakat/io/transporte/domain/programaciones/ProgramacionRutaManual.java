@@ -1,7 +1,6 @@
 package com.egakat.io.transporte.domain.programaciones;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,10 +10,8 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.DynamicUpdate;
 
-import com.egakat.integration.files.domain.Registro;
-import com.egakat.integration.files.enums.EstadoRegistroType;
+import com.egakat.integration.commons.archivos.domain.Registro;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -119,21 +116,5 @@ public class ProgramacionRutaManual extends Registro {
 		default:
 			return null;
 		}
-	}
-
-	@Builder
-	public ProgramacionRutaManual(Long id, int version, LocalDateTime fechaCreacion, String creadoPor,
-			LocalDateTime fechaModificacion, String modificadoPor, Long idArchivo, @NotNull EstadoRegistroType estado,
-			int numeroLinea, @Size(max = 20) @NotNull String placa, int secuencia,
-			@Size(max = 20) @NotNull String clienteCodigo, @Size(max = 20) @NotNull String numeroSolicitud,
-			@NotNull LocalDate fechaEstimada, Long idCliente, Long idSolicitud) {
-		super(id, version, fechaCreacion, creadoPor, fechaModificacion, modificadoPor, idArchivo, estado, numeroLinea);
-		this.placa = placa;
-		this.secuencia = secuencia;
-		this.clienteCodigo = clienteCodigo;
-		this.numeroSolicitud = numeroSolicitud;
-		this.fechaEstimada = fechaEstimada;
-		this.idCliente = idCliente;
-		this.idSolicitud = idSolicitud;
 	}
 }

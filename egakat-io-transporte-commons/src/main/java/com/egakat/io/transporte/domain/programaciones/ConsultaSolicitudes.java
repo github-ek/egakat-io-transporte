@@ -1,8 +1,6 @@
 
 package com.egakat.io.transporte.domain.programaciones;
 
-import java.time.LocalDateTime;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -11,10 +9,8 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.DynamicUpdate;
 
-import com.egakat.integration.files.domain.Registro;
-import com.egakat.integration.files.enums.EstadoRegistroType;
+import com.egakat.integration.commons.archivos.domain.Registro;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -97,17 +93,5 @@ public class ConsultaSolicitudes extends Registro {
 		default:
 			return null;
 		}
-	}
-
-	@Builder
-	public ConsultaSolicitudes(Long id, int version, LocalDateTime fechaCreacion, String creadoPor,
-			LocalDateTime fechaModificacion, String modificadoPor, Long idArchivo, @NotNull EstadoRegistroType estado,
-			int numeroLinea, @Size(max = 20) @NotNull String clienteCodigo,
-			@Size(max = 20) @NotNull String numeroSolicitud, Long idCliente, Long idSolicitud) {
-		super(id, version, fechaCreacion, creadoPor, fechaModificacion, modificadoPor, idArchivo, estado, numeroLinea);
-		this.clienteCodigo = clienteCodigo;
-		this.numeroSolicitud = numeroSolicitud;
-		this.idCliente = idCliente;
-		this.idSolicitud = idSolicitud;
 	}
 }

@@ -8,7 +8,7 @@ import com.egakat.integration.core.files.components.decorators.Decorator;
 import com.egakat.integration.core.files.components.decorators.IncluirEncabezadoDecorator;
 import com.egakat.integration.core.files.components.readers.ExcelWorkSheetReader;
 import com.egakat.integration.core.files.components.readers.Reader;
-import com.egakat.integration.core.files.service.impl.excel.ArchivoExcelInputServiceImpl;
+import com.egakat.integration.core.files.service.impl.ArchivoExcelInputServiceImpl;
 import com.egakat.io.transporte.components.decorators.programaciones.CamposRemesaProgramadaDecorator;
 import com.egakat.io.transporte.components.decorators.programaciones.MapEntidadRemesaProgramadaDecorator;
 import com.egakat.io.transporte.domain.programaciones.RemesaProgramada;

@@ -2,8 +2,8 @@ package com.egakat.io.transporte.components.decorators.moviles;
 
 import java.util.stream.Collectors;
 
+import com.egakat.integration.commons.archivos.dto.EtlRequestDto;
 import com.egakat.integration.core.files.components.decorators.Decorator;
-import com.egakat.integration.files.dto.EtlRequestDto;
 import com.egakat.io.transporte.domain.moviles.MovilRutaControl;
 
 import lombok.val;

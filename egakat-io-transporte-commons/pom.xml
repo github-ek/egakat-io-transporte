@@ -47,5 +47,11 @@
 			<groupId>com.egakat</groupId>
 			<artifactId>egakat-integration-core-files</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.egakat</groupId>
+			<artifactId>egakat-integration-config</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<type>war</type>
+		</dependency>
 	</dependencies>
 </project>

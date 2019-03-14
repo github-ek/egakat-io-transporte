@@ -1,7 +1,5 @@
 package com.egakat.io.transporte.domain.moviles;
 
-import java.time.LocalDateTime;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -10,10 +8,8 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.DynamicUpdate;
 
-import com.egakat.integration.files.domain.Registro;
-import com.egakat.integration.files.enums.EstadoRegistroType;
+import com.egakat.integration.commons.archivos.domain.Registro;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -71,14 +67,5 @@ public class MovilRutaControl extends Registro {
 	@Override
 	protected Object getObjectValueFromHomologousProperty(String property) {
 		return null;
-	}
-
-	@Builder
-	public MovilRutaControl(Long id, int version, LocalDateTime fechaCreacion, String creadoPor,
-			LocalDateTime fechaModificacion, String modificadoPor, Long idArchivo, @NotNull EstadoRegistroType estado,
-			int numeroLinea, @Size(max = 20) @NotNull String movil, @Size(max = 20) @NotNull String placa) {
-		super(id, version, fechaCreacion, creadoPor, fechaModificacion, modificadoPor, idArchivo, estado, numeroLinea);
-		this.movil = movil;
-		this.placa = placa;
 	}
 }

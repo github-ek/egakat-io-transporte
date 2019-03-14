@@ -1,8 +1,8 @@
 package com.egakat.io.transporte.components.decorators.programaciones;
 
+import com.egakat.integration.commons.archivos.dto.EtlRequestDto;
+import com.egakat.integration.commons.archivos.dto.RegistroDto;
 import com.egakat.integration.core.files.components.decorators.Decorator;
-import com.egakat.integration.files.dto.EtlRequestDto;
-import com.egakat.integration.files.dto.RegistroDto;
 import com.egakat.io.transporte.domain.programaciones.RemesaProgramada;
 
 import lombok.val;

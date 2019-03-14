@@ -7,13 +7,9 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import com.egakat.io.transporte.secundaria.service.api.cierres.PlanillaRutaControlInputService;
-<<<<<<< HEAD
-import com.egakat.io.transporte.secundaria.service.api.programaciones.ConsultaSolicitudesInputService;
-=======
 import com.egakat.io.transporte.secundaria.service.api.moviles.MovilesRutaControlInputService;
 import com.egakat.io.transporte.secundaria.service.api.programaciones.ConsultaSolicitudesInputService;
 import com.egakat.io.transporte.secundaria.service.api.programaciones.ProgramacionRutaTourSolverInputService;
->>>>>>> cbef25cf26735d9855674b8af1b7dbd673883b24
 
 import lombok.val;
 import lombok.extern.slf4j.Slf4j;
@@ -25,17 +21,6 @@ public class Task {
 	@Autowired
 	private PlanillaRutaControlInputService planillaRutaControlInputService;
 
-<<<<<<< HEAD
-//	@Autowired
-//	private MovilesRutaControlInputService movilesRutaControlService;
-//
-	@Autowired
-	private ConsultaSolicitudesInputService consultaSolicitudesService;
-//
-//	@Autowired
-//	private ProgramacionRutaTourSolverInputService programacionRutaTourSolverService;
-//
-=======
 	@Autowired
 	private MovilesRutaControlInputService movilesRutaControlService;
 
@@ -45,7 +30,6 @@ public class Task {
 	@Autowired
 	private ProgramacionRutaTourSolverInputService programacionRutaTourSolverService;
 
->>>>>>> cbef25cf26735d9855674b8af1b7dbd673883b24
 //	@Autowired
 //	private ProgramacionRutaManualInputService programacionRutaManualService;
 //
@@ -57,24 +41,15 @@ public class Task {
 		// @formatter:off
 		val services = Arrays.asList(
 				planillaRutaControlInputService,
-<<<<<<< HEAD
 				/*movilesRutaControlService,*/
 				consultaSolicitudesService/*,
 				programacionRutaTourSolverService,
 				programacionRutaManualService,
 				remesaProgramadaRutaControlService*/
-=======
-				movilesRutaControlService,
-				consultaSolicitudesService,
-				programacionRutaTourSolverService
-				//,
-				//programacionRutaManualService,
-				//remesaProgramadaRutaControlService
->>>>>>> cbef25cf26735d9855674b8af1b7dbd673883b24
 				);
 		// @formatter:on
 
-		services.parallelStream().forEach(service -> {
+		services.forEach(service -> {
 			val archivos = service.getArchivosPendientes();
 			archivos.stream().forEach(archivoId -> {
 				try {

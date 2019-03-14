@@ -13,11 +13,11 @@ import static com.egakat.io.transporte.domain.cierres.PlanillaRutaControl.PLACA_
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import com.egakat.integration.commons.archivos.dto.EtlRequestDto;
+import com.egakat.integration.commons.archivos.dto.RegistroDto;
+import com.egakat.integration.commons.archivos.enums.EstadoRegistroType;
 import com.egakat.integration.core.files.components.decorators.Decorator;
 import com.egakat.integration.core.files.components.decorators.MapEntidadDecorator;
-import com.egakat.integration.files.dto.EtlRequestDto;
-import com.egakat.integration.files.dto.RegistroDto;
-import com.egakat.integration.files.enums.EstadoRegistroType;
 import com.egakat.io.transporte.domain.cierres.PlanillaRutaControl;
 
 import lombok.val;
@@ -36,24 +36,22 @@ public class MapEntidadPlanillaRutaControlDecorator extends MapEntidadDecorator<
 		LocalDateTime fechaHoraInicio = getLocalDateTime(archivo, registro, FECHA_HORA_INICIO);
 		LocalDateTime fechaHoraFin = getLocalDateTime(archivo, registro, FECHA_HORA_FIN);
 
-		
 		// @formatter:off
-		val result = PlanillaRutaControl.builder()
-				.idArchivo(archivo.getArchivo().getId())
-				.estado(EstadoRegistroType.ESTRUCTURA_VALIDA)
-				.numeroLinea(registro.getNumeroLinea())
-				.version(0)
-				
-				.placaProgramada(getString(archivo, registro,PLACA_PROGRAMADA))
-				.fechaProgramada(fechaProgramada)
-				.clienteIdentificacion(getString(archivo, registro,CLIENTE_IDENTIFICACION))
-				.numeroSolicitud(getString(archivo, registro,NUMERO_SOLICITUD))
-				.estadoCodigoAlterno(getString(archivo, registro,ESTADO_CODIGO_ALTERNO))
-				.causalNovedadCodigoAlterno(getString(archivo, registro,CAUSAL_NOVEDAD_CODIGO_ALTERNO))
-				.fechaHoraInicio(fechaHoraInicio)
-				.fechaHoraFin(fechaHoraFin)
-				.observaciones(getString(archivo, registro,OBSERVACION))
-				.build();
+		val result = new PlanillaRutaControl();
+		result.setIdArchivo(archivo.getArchivo().getId());
+		result.setEstado(EstadoRegistroType.ESTRUCTURA_VALIDA);
+		result.setNumeroLinea(registro.getNumeroLinea());
+		result.setVersion(0);
+		
+		result.setPlacaProgramada(getString(archivo, registro,PLACA_PROGRAMADA));
+		result.setFechaProgramada(fechaProgramada);
+		result.setClienteIdentificacion(getString(archivo, registro,CLIENTE_IDENTIFICACION));
+		result.setNumeroSolicitud(getString(archivo, registro,NUMERO_SOLICITUD));
+		result.setEstadoCodigoAlterno(getString(archivo, registro,ESTADO_CODIGO_ALTERNO));
+		result.setCausalNovedadCodigoAlterno(getString(archivo, registro,CAUSAL_NOVEDAD_CODIGO_ALTERNO));
+		result.setFechaHoraInicio(fechaHoraInicio);
+		result.setFechaHoraFin(fechaHoraFin);
+		result.setObservaciones(getString(archivo, registro,OBSERVACION));
 		// @formatter:on
 
 		return result;
