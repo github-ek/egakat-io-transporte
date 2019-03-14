@@ -41,11 +41,12 @@ public class Task {
 		// @formatter:off
 		val services = Arrays.asList(
 				planillaRutaControlInputService,
-				/*movilesRutaControlService,*/
-				consultaSolicitudesService/*,
-				programacionRutaTourSolverService,
-				programacionRutaManualService,
-				remesaProgramadaRutaControlService*/
+				movilesRutaControlService,
+				consultaSolicitudesService,
+				programacionRutaTourSolverService
+				//,
+				//programacionRutaManualService,
+				//remesaProgramadaRutaControlService
 				);
 		// @formatter:on
 
